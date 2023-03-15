@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PRS.Controllers;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PRS.Models;
@@ -19,5 +20,7 @@ public class Request
     public decimal Total { get; set; }
     public int UserId { get; set; }
     public virtual User? User { get; set; }
+
+    public virtual ICollection<RequestLine>? RequestLines { get; set; }
 
 }

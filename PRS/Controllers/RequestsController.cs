@@ -39,8 +39,12 @@ namespace PRS.Controllers {
         // GET: api/Requests/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Request>> GetRequest(int id) {
-            var request = await _context.Requests.FindAsync(id);
-
+            var request = await _context.Requests
+                                                   .Include(x => x.User)
+                                                    .Include(x => x.RequestLines)
+                                                    .ThenInclude(x => x.Product)
+                                                .SingleOrDefaultAsync(x => x.Id == id);
+                                                    
             if (request == null) {
                 return NotFound();
             }
@@ -71,18 +75,8 @@ namespace PRS.Controllers {
 
             return NoContent();
         }
-        //_________________________________________________________________________________________________
-        //Sets the status of the request for the id provided to "REJECTED"
-        // PUT: api/Requests/reject/5
-        [HttpPut("reject")]
-        public async Task<IActionResult> Reject(int id, Request r) {
-            r.Status = "REJECTED";
-            return await PutRequest(id, r);
-        }
-        //________________________________________________________________________________________________
-
         //Sets the status of the request for the id provided to "APPROVED" if less than or equal to 50 otherwise its "REVIEW"
-        // PUT: api/Requests/review/5
+        // PUT: api/Requests/reviews/5
 
         [HttpPut("reviews/{id}")]
 
@@ -94,15 +88,25 @@ namespace PRS.Controllers {
             } else {
                 r.Status = "REVIEW";
             }
-
+                
 
             return await PutRequest(id, r);
         }
+
+        //Sets the status of the request for the id provided to "REJECTED"
+        // PUT: api/Requests/reject/5
+        [HttpPut("reject/{id}")]
+        public async Task<IActionResult> Reject(int id, Request r) {
+            r.Status = "REJECTED";
+            return await PutRequest(id, r);
+        }
+ 
+
         // sets the status of the request for the id provided to "APPROVED"
         //PUT: api/Requests/approve/5
 
-        //    [HttpPut("/approval/{id}")]
-        public async Task<IActionResult> Approval(int id, Request r) {
+            [HttpPut("approve/{id}")]
+        public async Task<IActionResult> Approve(int id, Request r) {
             r.Status = "APPROVED";
             return await PutRequest(id, r);
         }

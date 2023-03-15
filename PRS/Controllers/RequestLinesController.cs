@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using NuGet.Protocol.Plugins;
 using PRS.Models;
 
 namespace PRS.Controllers
@@ -42,6 +43,21 @@ namespace PRS.Controllers
             return requestLine;
         }
 
+        private async Task<IActionResult> RecalculateRequestTotal(int requestId) {
+            var request = await _context.Requests.FindAsync(requestId);
+            request.Total = (from rl in _context.RequestLines
+                             join p in _context.Products
+                             on rl.ProductId equals p.Id
+                             where rl.RequestId == requestId
+                             select new {
+                                 lineTotal = rl.Quantity * p.Price,
+                             }).Sum(x => x.lineTotal);
+
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+
         // PUT: api/RequestLines/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -69,29 +85,9 @@ namespace PRS.Controllers
                     throw;
                 }
             }
-
+            await RecalculateRequestTotal(requestLine.RequestId);
             return NoContent();
         }
-        //_________________________________________________________________________________________________________--
-        //private async Task<IActionResult> RecalculateRequestTotal(int productId) {
-        //    var price = await _context.Products.FindAsync();
-        //    var requestlines = await _context.Requests
-        //                                      .Include(x => x.Total)
-        //                                      .Where(x => x.RequestId == requestId)
-        //                                      .ToListAsync();
-        //    List<decimal> total = new List<decimal>();
-
-        //    if (requestId is null) {
-        //        return NotFound();
-        //    }
-        //    decimal grandtotal = 0m;
-        //    foreach (var rl in requestlines) {
-        //        var linetotal = rl.ProductId.Price * rl.Quantity;
-        //        grandtotal += linetotal;
-               
-        //    }
-
-            //}-------------------------------------------------------------------------------------------------------
 
             // POST: api/RequestLines
             // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -100,9 +96,11 @@ namespace PRS.Controllers
         {
             _context.RequestLines.Add(requestLine);
             await _context.SaveChangesAsync();
-
+            await RecalculateRequestTotal(requestLine.RequestId);
             return CreatedAtAction("GetRequestLine", new { id = requestLine.Id }, requestLine);
         }
+
+
 
         // DELETE: api/RequestLines/5
         [HttpDelete("{id}")]
@@ -116,9 +114,11 @@ namespace PRS.Controllers
 
             _context.RequestLines.Remove(requestLine);
             await _context.SaveChangesAsync();
+            await RecalculateRequestTotal(requestLine.RequestId);
 
             return NoContent();
         }
+
 
         private bool RequestLineExists(int id)
         {
