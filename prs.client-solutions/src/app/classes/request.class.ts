@@ -1,0 +1,17 @@
+import { Requestline } from "./requestline.class";
+import { User } from "./user.class";
+
+export class Request {
+    id: number = 0;
+    description: string = "";
+    justification: string = "";
+    rejectionReason: string = "";
+    deliveryMode: string = "";
+    status: string = "";
+    total: number = 0;
+
+    userId: number = 0;
+    user: User | null = null;
+
+    requestline: Requestline[] | null = null;
+}
