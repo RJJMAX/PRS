@@ -26,5 +26,17 @@ export class UserService {
   login(username: string, password: string): Observable<User> {
     return this.http.get(`${this.baseurl}/${username}/${password}`) as Observable<User>
   }
+  //POST Create new user
+  create(user: User): Observable<User> {
+    return this.http.post(`${this.baseurl}`, user) as Observable<User>
+  }
+  //PUT Edit user
+  edit(user: User): Observable<any> {
+    return this.http.put(`${this.baseurl}/${user.id}`, user) as Observable<any>
+  }
+  //REMOVE (delete) user by Id
+  remove(id:number): Observable<any> {
+    return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>
+  }
 
 }

@@ -10,7 +10,7 @@ export class MenubarComponent {
   menus: Menu[] = [
     new Menu("Home", "/user"),
     new Menu("Login", "/user/login"),
-    new Menu("Orders", "/orders/list/:id"),
+    new Menu("Orders", "/orders/list"),
     new Menu("About", "/about")
   ]
 }
