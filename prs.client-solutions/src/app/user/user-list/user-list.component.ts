@@ -12,10 +12,22 @@ export class UserListComponent {
 pageTitle = "User List";
 user: User[] = [];
 
+sortColumn: string = "id";
+sortAsc: boolean = true;
+
 constructor(
   private userSvc: UserService,
   private sysSvc: SystemService
 ) {}
+
+selectColumn(col: string): void {
+  if(col === this.sortColumn) {
+    this.sortAsc = !this.sortAsc;
+    return;
+  }
+  this.sortColumn = col;
+  this.sortAsc = true;
+}
 
 ngOnInit(): void {
   // this.sysSvc.checkLogin();

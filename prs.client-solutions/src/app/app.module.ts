@@ -13,6 +13,13 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
+import { SortPipe } from './core/sort.pipe';
+import { UserLoginComponent } from './user/user-login/user-login.component';
+import { SearchPipe } from './user/search.pipe';
+import { VendorCreateComponent } from './vendor/vendor-create/vendor-create.component';
+import { VendorEditComponent } from './vendor/vendor-edit/vendor-edit.component';
+import { VendorDetailComponent } from './vendor/vendor-detail/vendor-detail.component';
+import { VendorListComponent } from './vendor/vendor-list/vendor-list.component';
 
 
 
@@ -26,7 +33,14 @@ import { UserCreateComponent } from './user/user-create/user-create.component';
     UserListComponent,
     UserDetailComponent,
     UserEditComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    SortPipe,
+    UserLoginComponent,
+    SearchPipe,
+    VendorCreateComponent,
+    VendorEditComponent,
+    VendorDetailComponent,
+    VendorListComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule,

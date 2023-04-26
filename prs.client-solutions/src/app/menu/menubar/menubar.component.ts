@@ -11,6 +11,7 @@ export class MenubarComponent {
     new Menu("Home", "/user"),
     new Menu("Login", "/user/login"),
     new Menu("Orders", "/orders/list"),
-    new Menu("About", "/about")
+    new Menu("About", "/about"),
+    new Menu("Vendors", "/vendor/list")
   ]
 }
