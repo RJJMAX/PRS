@@ -12,6 +12,7 @@ export class MenubarComponent {
     new Menu("Login", "/user/login"),
     new Menu("Orders", "/orders/list"),
     new Menu("About", "/about"),
-    new Menu("Vendors", "/vendor/list")
+    new Menu("Vendors", "/vendor/list"),
+    new Menu("Products", "/product/list")
   ]
 }

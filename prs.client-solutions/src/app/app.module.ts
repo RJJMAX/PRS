@@ -20,6 +20,10 @@ import { VendorCreateComponent } from './vendor/vendor-create/vendor-create.comp
 import { VendorEditComponent } from './vendor/vendor-edit/vendor-edit.component';
 import { VendorDetailComponent } from './vendor/vendor-detail/vendor-detail.component';
 import { VendorListComponent } from './vendor/vendor-list/vendor-list.component';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import { ProductCreateComponent } from './product/product-create/product-create.component';
 
 
 
@@ -40,7 +44,11 @@ import { VendorListComponent } from './vendor/vendor-list/vendor-list.component'
     VendorCreateComponent,
     VendorEditComponent,
     VendorDetailComponent,
-    VendorListComponent
+    VendorListComponent,
+    ProductDetailComponent,
+    ProductListComponent,
+    ProductEditComponent,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule,

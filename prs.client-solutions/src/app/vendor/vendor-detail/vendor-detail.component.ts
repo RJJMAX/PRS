@@ -20,20 +20,28 @@ constructor(
 ) {}
 
 remove(): void {
-  this.showVerifyRemove = !this.showVerifyRemove;
-}
-
-removeVerified(): void {
+  // this.showVerifyRemove = !this.showVerifyRemove;
   this.vendSvc.remove(this.vendor.id).subscribe({
     next: (res) => {
-      console.debug("Vendor Removed", res);
+      console.debug("Vendor Removed");
       this.router.navigateByUrl("/vendor/list");
     },
     error: (err) => {
       console.error(err);
-    }
-  });
 }
+});
+}
+// removeVerified(): void {
+//   this.vendSvc.remove(this.vendor.id).subscribe({
+//     next: (res) => {
+//       console.debug("Vendor Removed", res);
+//       this.router.navigateByUrl("/vendor/list");
+//     },
+//     error: (err) => {
+//       console.error(err);
+//     }
+//   });
+// }
   ngOnInit(): void {
     let id = Number(this.route.snapshot.params["id"]);
     this.vendSvc.get(id).subscribe({
@@ -44,7 +52,8 @@ removeVerified(): void {
       error: (err) => {
         console.error(err);
       }
-    })
+    });
   }
-}
+ }
 
+  

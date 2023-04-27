@@ -20,10 +20,6 @@ export class UserDetailComponent {
   ) {}
 
   remove(): void {
-    this.showVerifyRemove = !this.showVerifyRemove;
-  }
-
-  removeVerified(): void {
     this.userSvc.remove(this.user.id).subscribe({
       next: (res) => {
         console.debug("Employee Removed!", res);
@@ -33,6 +29,7 @@ export class UserDetailComponent {
         console.error(err);
       }
     });
+
   }
 
   ngOnInit(): void{
