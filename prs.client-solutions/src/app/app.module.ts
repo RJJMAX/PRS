@@ -24,6 +24,19 @@ import { ProductDetailComponent } from './product/product-detail/product-detail.
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
+import { RequestReviewComponent } from './request/request-review/request-review.component';
+import { RequestLineComponent } from './request/request-line/request-line.component';
+import { RequestListComponent } from './request/request-list/request-list.component';
+import { RequestItemComponent } from './request/request-item/request-item.component';
+import { RequestDetailComponent } from './request/request-detail/request-detail.component';
+import { RequestEditComponent } from './request/request-edit/request-edit.component';
+import { RequestCreateComponent } from './request/request-create/request-create.component';
+import { RequestlineCreateComponent } from './requestline/requestline-create/requestline-create.component';
+import { RequestlineEditComponent } from './requestline/requestline-edit/requestline-edit.component';
+import { RequestlineListComponent } from './requestline/requestline-list/requestline-list.component';
+import { RequestlineItemComponent } from './requestline/requestline-item/requestline-item.component';
+import { RequestlineRejectComponent } from './requestline/requestline-reject/requestline-reject.component';
+
 
 
 
@@ -48,7 +61,19 @@ import { ProductCreateComponent } from './product/product-create/product-create.
     ProductDetailComponent,
     ProductListComponent,
     ProductEditComponent,
-    ProductCreateComponent
+    ProductCreateComponent,
+    RequestReviewComponent,
+    RequestLineComponent,
+    RequestListComponent,
+    RequestItemComponent,
+    RequestDetailComponent,
+    RequestEditComponent,
+    RequestCreateComponent,
+    RequestlineCreateComponent,
+    RequestlineEditComponent,
+    RequestlineListComponent,
+    RequestlineItemComponent,
+    RequestlineRejectComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule,

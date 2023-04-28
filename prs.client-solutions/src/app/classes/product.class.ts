@@ -9,5 +9,6 @@ export class Product {
     photoPath: string = "";
 
     vendorId: number = 0;
+    vendorName: string = "";
     vendor: Vendor | null = null;
 }

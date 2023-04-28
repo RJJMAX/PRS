@@ -31,8 +31,10 @@
                     <td><input [(ngModel)]="product.photoPath"></td>
                 </tr>
                 <tr>
-                    <td>Vendor Id</td>
-                    <td><input [(ngModel)]="product.vendorId"></td>
+                    <td>Vendor</td>
+                    <td><select [(ngModel)]="product.vendorId">
+                        <option *ngFor="let v of vendor" value="{{v.id}}">{{v.name}}</option>
+                    </select></td>
                 </tr>
             </tbody>
         </table>

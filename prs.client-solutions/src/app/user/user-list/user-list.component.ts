@@ -30,12 +30,12 @@ selectColumn(col: string): void {
 }
 
 ngOnInit(): void {
-  // this.sysSvc.checkLogin();
-  // if(this.sysSvc.loggedInUser !== null) {
-  //   console.log("User is logged in");
-  // } else {
-  //   console.log("No one is logged in");
-  // }
+  this.sysSvc.checkLogin();
+  if(this.sysSvc.loggedInUser !== null) {
+    console.log("User is logged in");
+  } else {
+    console.log("No one is logged in");
+  }
   this.userSvc.list().subscribe({
     next: (res) => {  
       console.debug("User:", res);
