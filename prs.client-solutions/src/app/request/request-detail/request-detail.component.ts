@@ -22,7 +22,7 @@ export class RequestDetailComponent {
   remove(): void {
     this.reqSvc.remove(this.request.id).subscribe({
       next: (res) => {
-        console.debug("Employee Removed!", res);
+        console.debug("User Removed!", res);
         this.router.navigateByUrl("user/list");
       },
       error: (err) => {

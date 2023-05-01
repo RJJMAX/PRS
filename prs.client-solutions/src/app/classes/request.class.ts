@@ -6,12 +6,14 @@ export class Request {
     description: string = "";
     justification: string = "";
     rejectionReason: string = "";
-    deliveryMode: string = "";
-    status: string = "";
+    deliveryMode: string = "PICKUP";
+    status: string = "NEW";
     total: number = 0;
 
     userId: number = 0;
     user: User | null = null;
 
-    requestline: Requestline[] | null = null;
+    requestLines: Requestline[] = [];
+
+
 }

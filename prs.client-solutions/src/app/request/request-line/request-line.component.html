@@ -3,9 +3,8 @@
         <app-menubar></app-menubar>
         <span id="pageTitle">{{pageTitle}}</span>
         <span> | </span>
-        <a routerLink="/order/create">Create New</a>
-    </header>
-    <table class="table table-striped table-sm">
+          </header>
+    <table class="table table-striped table-sm" *ngIf="request">
         <thead>
             <tr>
                 <th>Id</th>
@@ -20,18 +19,18 @@
         <tbody>
             <tr>
                 <td>{{request.id}}</td>
-                <td>{{request.description | date}}</td>
+                <td>{{request.description}}</td>
                 <td>{{request.rejectionReason}}</td>
                 <td>{{request.status}}</td>
                 <td>{{request.total | currency}}</td>
-                <td>{{user.username}}</td>
+                <td>{{request.user?.username}}</td>
                 <td>
-                    <button (click)="submitReview()" class="btn btn-link">Review</button>
+                    <button (click)="submitReview()" class="btn btn-link" routerLink="/request/review" >Submit for Review</button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <a routerLink="/orderline/create{{request.id}}">Create New</a>
+    <a routerLink="/requestline/create">Create</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
@@ -43,8 +42,8 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody *ngIf="request && request.requestline">
-            <tr *ngFor="let rl of request.requestline">
+        <tbody *ngIf="request && request.requestLines">
+            <tr *ngFor="let rl of request.requestLines">
                 <td>{{rl.id}}</td>
                 <td>{{rl.product?.name}}</td>
                 <td>{{rl.product?.price | currency}}</td>
@@ -53,10 +52,10 @@
                 <td>
                     <a routerLink="/orderline/edit/{{rl.id}}">Change</a>
                     <span> | </span>
-                     <!-- <a (click)="remove(rl)" class="">Remove</a> -->
+                    <button (click)="remove(rl.id)" class="">Remove</button>
                 </td>
                 </tr>
-
+        </tbody>
     </table>
     
 </div>

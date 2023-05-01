@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Request } from 'src/app/classes/request.class';
 import { RequestService } from '../request.service';
-import { RequestReviewComponent } from '../request-review/request-review.component';
+import { User } from 'src/app/classes/user.class';
+import { SystemService } from 'src/app/system.service';
 
 @Component({
   selector: 'app-request-create',
@@ -11,12 +12,15 @@ import { RequestReviewComponent } from '../request-review/request-review.compone
 })
 export class RequestCreateComponent {
   request: Request = new Request();
+  user!: User;
 
   pageTitle = "New Request";
   
   constructor(
     private reqSvc: RequestService,
-    private router: Router
+    private sysSvc: SystemService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
   
   save(): void {
@@ -33,16 +37,21 @@ export class RequestCreateComponent {
   }
 
   ngOnInit(): void {
-    if(this.request.userId !== this.request.userId) {
-      this.reqSvc.get(this.request.userId).subscribe({
-        next: (res) => {
-          console.debug("Requests:");
-          this.request = res;
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      });
+    this.sysSvc.checkLogin();
+    if(this.sysSvc.loggedInUser !== null) {
+      this.request.userId = this.sysSvc.loggedInUser?.id;
     }
   }
+
+//   ngOnInit(): void {
+//     this.reqSvc.list().subscribe ({
+//       next: (res) => {
+//         console.debug("Request:", res);
+//       },
+//       error: (err) => {
+//         console.error(err);
+//       }
+    
+//   });
+// }
 }

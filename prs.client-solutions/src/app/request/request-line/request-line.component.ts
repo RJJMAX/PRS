@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { RequestService } from '../request.service';
-import { Requestline } from 'src/app/classes/requestline.class';
 import { Request } from 'src/app/classes/request.class';
-import { SystemService } from 'src/app/system.service';
 import { User } from 'src/app/classes/user.class';
+import { Requestline } from 'src/app/classes/requestline.class';
 import { RequestlineService } from 'src/app/requestline/requestline.service';
 
 @Component({
@@ -14,33 +13,46 @@ import { RequestlineService } from 'src/app/requestline/requestline.service';
 })
 export class RequestLineComponent {
 pageTitle = "Request Line";
-user!: User;
 request!: Request;
+requestline!: Requestline;
+user!: User;
 
 constructor(
   private reqSvc: RequestService,
   private rlSvc: RequestlineService,
-  private sysSvc: SystemService,
   private route: ActivatedRoute
 ) {}
 
-submitReview(): void {}
+submitReview(): void {
+  this.reqSvc.review(this.request).subscribe({
+    next: (res) => {
+      console.debug("Request Reviewed");
+      this.request = res;
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+}
 
-// remove(requestline: Requestline): {
-//   this.rlSvc.remove(id).subscribe({
-//     next: (res) => {
-//       console.debug("Requestline Removed!");
-//       this.rlSvc = res;
-//     }
-//     error: (err) => {
-//       console.error(err);
-//     }
-//   });
-// }
-// }
+remove(id: number): void {
+  this.rlSvc.remove(id).subscribe({
+    next: (res) => {
+      console.debug("Requestline Removed!", res);
+      this.refresh();
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
 
- ngOnInit(): void {
- let id = this.route.snapshot.params["id"];
+}
+
+
+
+
+ refresh(): void {
+  let id = Number(this.route.snapshot.params["id"]);
  this.reqSvc.get(id).subscribe({
    next: (res) => {
      console.debug("Request:", res)
@@ -50,6 +62,10 @@ submitReview(): void {}
      console.error(err);
    }
 });
+}
+
+ngOnInit(): void {
+  this.refresh();
 }
 }
 

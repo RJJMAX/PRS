@@ -47,7 +47,7 @@ ngOnInit(): void {
     }
   });
   let id = this.route.snapshot.params["id"];
-  this.requestline.get(id).subscribe({
+  this.rlSvc.get(id).subscribe({
     next: (res) => {
       console.debug("Requestline:", res);
       this.requestline = res;
@@ -59,4 +59,4 @@ ngOnInit(): void {
 }
 
 }
-}
+

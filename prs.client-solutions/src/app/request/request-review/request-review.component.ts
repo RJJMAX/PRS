@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { RequestService } from '../request.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Request } from 'src/app/classes/request.class';
+import { User } from 'src/app/classes/user.class';
+import { ActivatedRoute } from '@angular/router';
+import { SystemService } from 'src/app/system.service';
 @Component({
   selector: 'app-request-review',
   templateUrl: './request-review.component.html',
@@ -9,37 +11,24 @@ import { Request } from 'src/app/classes/request.class';
 })
 export class RequestReviewComponent {
   pageTitle = "Request Review";
-  requests: Request[] = [];
-  request!: Request;
+  request: Request[] = [];
+  user!: User;
+ 
 
   constructor(
     private reqSvc: RequestService,
     private route: ActivatedRoute,
-    private router: Router
+    private sysSvc: SystemService
   ) {}
 
-  requestId(id: number): void {
-    if(this.request.id !== this.request.userId) {
-      this.reqSvc.list().subscribe({
-        next: (res) => {
-          console.debug("Requests:");
-          this.requests = res;
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      });
-    }
-  }
-  review(request: Request): void {
-    if(request.total <= 50) {
-      request.status = "APPROVED"
-    } else {
-      request.status = "REVIEW"
-    }
-    this.reqSvc.edit(request).subscribe({
-      next: (res) => {
-        console.debug("Request Reviewed");
+  ngOnInit(): void {
+    this.sysSvc.checkLogin();
+    let id = 0;
+    if(typeof this.sysSvc.loggedInUser !== "undefined" && this.sysSvc.loggedInUser !== null){
+    id = this.sysSvc.loggedInUser.id;}
+    this.reqSvc.reviews(id).subscribe({
+      next: (res) => {  
+        console.debug("Requests:", res);
         this.request = res;
       },
       error: (err) => {
@@ -47,27 +36,5 @@ export class RequestReviewComponent {
       }
     });
   }
-  approve(): void {
-    this.reqSvc.edit(this.request).subscribe({
-      next: (res) => {
-        console.debug("Request Approved");
-        this.router.navigateByUrl("/request/list")
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
-  }
-
-  reject(): void {
-    this.reqSvc.edit(this.request).subscribe({
-      next: (res) => {
-        console.debug("Request Approved");
-        this.router.navigateByUrl("/request/list")
-  },
-  error: (err) => {
-    console.error(err);
-  }
-});
-}
+ 
 }
