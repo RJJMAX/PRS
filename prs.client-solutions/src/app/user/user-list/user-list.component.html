@@ -24,13 +24,13 @@
             <tr *ngFor="let u of user | sort: sortColumn:sortAsc">
                 <td>{{u.id}}</td>
                 <td>{{u.username}}</td>
-                <td>{{u.password}}</td>
+                <td>{{u.password | password}}</td>
                 <td>{{u.firstname}}</td>
                 <td>{{u.lastname}}</td>
                 <td>{{u.email}}</td>
                 <td>{{u.phone}}</td>
-                <td>{{u.isReviewer}}</td>
-                <td>{{u.isAdmin}}</td>
+                <td>{{u.isReviewer ? 'YES' : 'NO'}}</td>
+                <td>{{u.isAdmin ? 'YES' : 'NO'}}</td>
                 <td>
                     <a routerLink="/user/detail/{{u.id}}">View</a>
                     <span> | </span>

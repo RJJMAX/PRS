@@ -33,9 +33,9 @@ import { RequestEditComponent } from './request/request-edit/request-edit.compon
 import { RequestCreateComponent } from './request/request-create/request-create.component';
 import { RequestlineCreateComponent } from './requestline/requestline-create/requestline-create.component';
 import { RequestlineEditComponent } from './requestline/requestline-edit/requestline-edit.component';
-import { RequestlineListComponent } from './requestline/requestline-list/requestline-list.component';
-import { RequestlineItemComponent } from './requestline/requestline-item/requestline-item.component';
-import { RequestlineRejectComponent } from './requestline/requestline-reject/requestline-reject.component';
+import { BoolPipe } from './pipes/bool.pipe';
+import { PasswordPipe } from './pipes/password.pipe';
+
 
 
 
@@ -71,9 +71,9 @@ import { RequestlineRejectComponent } from './requestline/requestline-reject/req
     RequestCreateComponent,
     RequestlineCreateComponent,
     RequestlineEditComponent,
-    RequestlineListComponent,
-    RequestlineItemComponent,
-    RequestlineRejectComponent
+    BoolPipe,
+    PasswordPipe,
+
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule,

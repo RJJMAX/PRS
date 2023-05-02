@@ -53,7 +53,7 @@
         <span>
         <form>
             <label for="Reason for Reject"></label>
-            <input type="text" name="Rejection Reason">
+            <input [(ngModel)]="request.rejectionReason" type="text" name="Rejection Reason">
             <span> | </span>
             <button (click)="rejectRequest(request)" class="btn btn-danger">Verify Reject</button>
         </form>

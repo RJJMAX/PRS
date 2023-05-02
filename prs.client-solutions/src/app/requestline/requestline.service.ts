@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Requestline } from '../classes/requestline.class';
+import { Product } from '../classes/product.class';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +35,4 @@ export class RequestlineService {
     remove(id: number): Observable<any> {
       return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>;
     }
-}
+  }

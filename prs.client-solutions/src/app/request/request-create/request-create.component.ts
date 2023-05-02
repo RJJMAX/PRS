@@ -22,7 +22,8 @@ export class RequestCreateComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {}
-  
+
+
   save(): void {
     this.request.userId = Number(this.request.userId);
     this.reqSvc.create(this.request).subscribe({
@@ -42,16 +43,4 @@ export class RequestCreateComponent {
       this.request.userId = this.sysSvc.loggedInUser?.id;
     }
   }
-
-//   ngOnInit(): void {
-//     this.reqSvc.list().subscribe ({
-//       next: (res) => {
-//         console.debug("Request:", res);
-//       },
-//       error: (err) => {
-//         console.error(err);
-//       }
-    
-//   });
-// }
 }

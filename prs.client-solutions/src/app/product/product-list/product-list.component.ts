@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
-import { SystemService } from 'src/app/system.service';
 import { Product } from 'src/app/classes/product.class';
+import { Vendor } from 'src/app/classes/vendor.class';
+
 
 @Component({
   selector: 'app-product-list',
@@ -11,18 +12,19 @@ import { Product } from 'src/app/classes/product.class';
 export class ProductListComponent {
 pageTitle = "Product List";
 product: Product[] = [];
+vendor!: Vendor[];
 
 constructor(
   private proSvc: ProductService,
-  private sysSvc: SystemService
 ) {}
+
 
 ngOnInit(): void {
   this.proSvc.list().subscribe({
     next: (res) => {
       console.debug("Products:", res);
       this.product = res;
-    },
+  },
     error: (err) => {
       console.error(err);
     }

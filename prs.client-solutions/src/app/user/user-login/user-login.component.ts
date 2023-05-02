@@ -29,6 +29,7 @@ export class UserLoginComponent {
       },
       error: (err) => {
         console.error(err);
+        this.message = "Invalid Username or Password";
       }
     });
   }
