@@ -1,0 +1,29 @@
+div {
+    background-image: url('C:\Users\max-s\Desktop\mcl.webp');
+    background-size: 100%;
+
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+/* #login {
+    color: black;
+} */
+/* a:link {
+    color: black;
+    
+} */
+/* a:hover {
+    color: red;
+} */
+/* a:active {
+    color: black;
+} */
+a:visited {
+    color: white;
+}

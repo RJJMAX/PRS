@@ -1,8 +1,23 @@
-table {
+tbody {
+    /* background-image: url('C:\Users\max-s\Desktop\logincode.jpg'); */
+    /* background-size: 100%; */
+    /* background-color: rgb(167, 177, 187); */
+}
 
+table {
+  
     margin-top: 5%;
    margin-left: 30%;
+   font-weight: bolder;
+   font-size: large;
 }
 button {
     margin-left: 30%;
+}
+
+div { 
+    margin: 0 10px; 
+    width: auto; 
+    height: 500px; 
+    background-image: url('C:\Users\max-s\Desktop\logincode.jpg');
 }

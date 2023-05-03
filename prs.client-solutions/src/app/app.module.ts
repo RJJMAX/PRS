@@ -35,6 +35,8 @@ import { RequestlineCreateComponent } from './requestline/requestline-create/req
 import { RequestlineEditComponent } from './requestline/requestline-edit/requestline-edit.component';
 import { BoolPipe } from './pipes/bool.pipe';
 import { PasswordPipe } from './pipes/password.pipe';
+import { AboutmeComponent } from './about/aboutme/aboutme.component';
+import { FrontPageComponent } from './menu/front-page/front-page.component';
 
 
 
@@ -73,6 +75,8 @@ import { PasswordPipe } from './pipes/password.pipe';
     RequestlineEditComponent,
     BoolPipe,
     PasswordPipe,
+    AboutmeComponent,
+    FrontPageComponent,
 
   ],
   imports: [

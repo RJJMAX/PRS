@@ -42,7 +42,8 @@ namespace PRS.Controllers
 
             return requestLine;
         }
-
+        
+        // Recalculate request total
         private async Task<IActionResult> RecalculateRequestTotal(int requestId) {
             var request = await _context.Requests.FindAsync(requestId);
             request.Total = (from rl in _context.RequestLines

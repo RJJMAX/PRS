@@ -13,7 +13,7 @@ export class MenubarComponent {
     new Menu("Products", "/product/list"),
     new Menu("Requests", "/request/list"),
     new Menu("Reviews", "/request/review"),
-    new Menu("About", "/about"),
+    new Menu("About", "/about/aboutme"),
     new Menu("Login", "/user/login")
   ]
 }

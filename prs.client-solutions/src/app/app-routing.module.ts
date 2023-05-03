@@ -25,6 +25,9 @@ import { RequestEditComponent } from './request/request-edit/request-edit.compon
 import { RequestCreateComponent } from './request/request-create/request-create.component';
 import { RequestlineCreateComponent } from './requestline/requestline-create/requestline-create.component';
 import { RequestlineEditComponent } from './requestline/requestline-edit/requestline-edit.component';
+import { AboutmeComponent } from './about/aboutme/aboutme.component';
+import { FrontPageComponent } from './menu/front-page/front-page.component';
+
 
 const routes: Routes = [
   {path: "", redirectTo: "user/login", pathMatch: "full"},
@@ -53,6 +56,8 @@ const routes: Routes = [
   {path: "request/review", component:RequestReviewComponent},
   {path: "requestline/create/:id", component:RequestlineCreateComponent},
   {path: "requestline/edit/:id", component:RequestlineEditComponent},
+  {path: "about/aboutme", component:AboutmeComponent},
+  {path: "front/page", component:FrontPageComponent},
 
   {path: "**", component: E404Component}
 ];

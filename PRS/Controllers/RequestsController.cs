@@ -22,7 +22,7 @@ namespace PRS.Controllers {
         // GET: api/Requests
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Request>>> GetRequests() {
-            return await _context.Requests.ToListAsync();
+            return await _context.Requests.Include(x => x.User).ToListAsync();
         }
 
         // Get requests in "REVIEW" status and NOT owned by the user with the Primary Key

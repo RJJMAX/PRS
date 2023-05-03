@@ -25,7 +25,7 @@ export class UserLoginComponent {
       next: (res) => {
         console.debug("Login Successful!");
         this.sysSvc.loggedInUser = res;
-        this.router.navigateByUrl("/user/list");
+        this.router.navigateByUrl("/front/page");
       },
       error: (err) => {
         console.error(err);
